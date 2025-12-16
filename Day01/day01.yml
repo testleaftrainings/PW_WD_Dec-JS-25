@@ -1,0 +1,82 @@
+📑 Agenda for day 01 - Introduction to JavaScript
+
+10:00 to 10:50 -> JS Introduction and History
+10:50 to 11:00 -> Break
+11:00 to 11:45 -> Primitives Data Types
+11:45 to 12:00 -> Breakout Session
+
+
+
+
+javascript --> interpreter programming language
+           --> light weight 
+           --> objectOriented (Prototype based)
+           --> node.js engine for execution outside the browser
+           --> js engine (browser specific)
+        Features:
+         -->supports both front end and backend dev (full stack development)
+           clientside and server side validation
+           Even driven architecture (event loop)
+           asynchronous programming
+           Single thread non blocking i/o
+
+js -->transpiled (AST -->abstract syntax tree)
+  parsing the code -->byte code exe -->binaries(0's and 1's)
+
+jit compiler
+  variables -->a,b
+   expressions--> *
+
+
+
+create
+fileName.js 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+Datatypes
+  -->type of information you store 
+  primitive and non primitive -->object specific array
+   number -> whole , decimal
+   string -> name,address
+   boolean -> true,false
+   undefined-> variable declared but no value assigned
+   var data  
+
+   null -->intentionally to make the varible null (not using the value)
+   var data=null 
+
+   bigInt -->long numbers
+   symbol --> unique information -->accessed in the way of object type
+var tr=Symbol("id")
+
+
+var(1995) -->keyword to declare a variable
+
+var data=98
+var -> variable declaration
+data -> variable name
+98-> value assigned
+
+
+   Number -->holds  data -->single , multiple digits, decimals
+
+   filename -->camelCase
+   variables -->camelCase -->isActive
+   class -->PascalCase  --> LoginPage
+
+run the code 
+ node fileName.js
