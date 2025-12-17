@@ -1,0 +1,159 @@
+Day 02
+10:00 to 10:50 -> var, let, const
+10:50 to 11:00 -> Break
+11:00 to 11:15 -> Breakout
+11:15 to 12:00 -> operators,Conditional statements
+12:00 to 12:15 -> Breakout
+
+
+
+
+var -> 1995 to 2015 
+ ES6 ->  2015  
+ let, const
+
+ difference- 
+ var let const
+
+ var 
+ 1. allows redeclaration of variables and also reassignement 
+   var username="user1"
+   var username="user2"
+
+ let 
+  doesnt allow to redeclare
+  allows to reassign the value
+
+  var -->allows redeclare and reassignement
+  let -->doesnot allows redeclare and allows reassignment
+  for both let and var -->reassign -->last value will be used in further steps
+            
+      
+                             -->existing data becomes unused
+
+
+
+
+
+ arithmentic
++
+-
+/  -->quotient
+*
+%  --> 1 (remainder)
+
+comparision of data  -> return type boolean
+<
+6<5 -> false
+>
+7>5 ->true
+>=
+3>=4
+<=
+==
+!=
+
+7>3 -> true
+5!=5-> false
+
+pre/post -> automatic only post incerment and decerment
+
+pre incerment (++i)
+post incerment (i++):
+i++=> i+1
+let i=0
+console.log(i++) //0
+console.log(i) //1
+
+let num=5
+for(let i=0;i<num;i++) 
+//old value + 1
+0+1=1
+1+1
+++  --> data +1
+
+post decerment (--)
+-- -->data-1
+
+logical - boolean
+
+&&-> AND , || ->OR 
+
+(5==5 && 6<5)
+(true && false) = false
+
+(5==5 || 6<5)
+(true || false)= true
+
+
+
+
+ClassRoom 2:
+
+var num-> 45
+//re-assignment
+//re-declaration
+
+let empname -> "testing"
+//re-assignment
+//re-declaration
+
+const final=34
+//re-assignment
+//re-declaration
+
+
+
+
+Control flow statements
+========================
+Conditional statement:
+
+if - condition
+===============
+let i=-6
+-> 1 if condition
+if(i>0){ 
+//when condition is true then only if block will be execution
+}
+
+
+
+-> 2 if-else condition
+let i=-6
+if(i>0){
+// if condition will false
+}else{
+//it will go to else block
+}
+
+
+
+
+-> 3 if ->else if ->else 
+let age =20
+
+ if(age<18){ //false
+ console.log("no voter id")
+}else if(age>=18){ //true
+console.log("voter id")
+}else{
+console.log("default id")
+}
+
+
+if(){
+}else if(){
+}else if(){
+}else if(){
+}else if(){
+}else{
+}
+
+
+ClassRoom 2:
+let mark =75
+mark>=90 -> A grade
+mark>=80 -> B grade
+mark>=70 -> C grade
+else -> fail
