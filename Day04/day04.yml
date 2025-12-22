@@ -1,0 +1,85 @@
+week2.day1
+Day04
+
+-> String
+-> Arrays
+-> Break + Breakout
+-> Functions
+
+j 0
+a 1
+v 2
+A 3
+s 4
+c 5
+r 6
+i 7
+p 8
+t 9
+
+
+Arrays:
+
+
+
+    Array --> collection of elements
+
+    store all the pdtname
+    all the price
+    collection of similar elements-->java
+    string -->"","",""
+    number-->15,01,12
+
+    js -->stores multiple elements of different datatype
+       -->array size is dynamic
+
+
+
+       let array=[23,45,65,78,23,90]
+
+       for(i=0;...){
+         for(j=i+1){
+            if(arr[i]==arr[j])
+            {
+               print the data
+            }
+         }
+       }
+
+
+classRoom:
+1. data ["chrome",true,132.8]
+add index 5 -> webkit
+pop->
+use push -> firefox
+use shift ->
+use for..of to print value
+
+
+
+
+Functions:
+1.Named Function or Regular Function
+2.Arrow Function
+3.Call-Back Function
+
+Named Function:
+A function is a reusable block of code
+
+function session(){
+console.log("name")
+}
+
+//call the function
+console.log(session("Playwright"))
+session()
+
+
+Arrow function:
+const variable =(input) => input
+syntax"
+arrow function ()=>
+
+const add=()=>{console.log("hi")}
+const data=(stName,stId)=>{ stName +" "+ stId}
+console.log(data("dinesh",89))
