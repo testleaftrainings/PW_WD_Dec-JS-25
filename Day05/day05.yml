@@ -1,0 +1,31 @@
+-> Call Back
+-> Playwright Introduction
+
+
+Functions:
+1.Name Function
+2.Arrow Function
+3.Anonymous Function
+
+Method -> need object
+obj.add()
+
+Function -> 
+add()
+
+Call Back Function:
+call the function into a another function
+
+-> order food
+-> prepare food
+-> delivery
+
+
+call - order food( prepare food )
+     -prepare food(delivery)
+
+
+ Promise:
+ -> pending -> start 
+ -> resolve -> pass -> then()
+ -> reject  -> fail -> catch()
