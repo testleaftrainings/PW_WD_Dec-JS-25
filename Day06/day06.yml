@@ -1,0 +1,95 @@
+-> Page fixture
+-> Breakout
+-> Basic Locator(css)
+-> Break +Breakout
+
+
+
+Page Fixture:
+reuse the line multiple times 
+
+async({page})
+page-> browser,context,page
+test("Page Fixture",async({page})=>{
+await page.goto("")
+})
+
+
+config -> 
+reporter: [['html',{open:'always'}]],
+
+use:{
+trace: 'on',
+    headless:false,
+    video:'on',
+    screenshot:'on',
+}
+
+
+Open Dom:
+1.right click page -> inspect 
+2.press f12 or Fn +f12
+3.ctrl+shift+i
+
+purple color -> tag name
+brown color -> attributename
+blue color -> attributevalue
+black color -> text
+
+
+Playwright Locators:
+-> CSS
+-> Xpath
+-> Playwright inbuild locator
+
+
+<label for="username">Username</label>
+
+tag name-> input, label
+
+class,type,id,name,size -> attributeName
+
+"inputLogin","text","username","USERNAME" -> attributeValue
+
+black color text-Username -> text
+
+id-unique value
+name - name of the attribute
+class -
+
+<input class="inputLogin" type="text" id="username" name="USERNAME" size="50">
+
+
+CSS : Cascading Style sheets
+id attribute
+1. #attributeValue -> #username
+2. [id='username']
+3. tagname[attributeName='attributeValue'] -> input[id='username']
+
+name attribute:
+1. [name='USERNAME']
+2. tagname[attributeName='attributeValue'] -> input[name='USERNAME']
+
+class attribute:
+1. .attributeValue -> .decorativeSubmit
+2. [class='decorativeSubmit']
+3. tagname[attributeName='attributeValue'] -> input[class='decorativeSubmit']
+
+.input r4 wide mb16 mt8 username -> it wll not work
+.input.r4.wide.mb16.mt8.username -> it will work
+
+[class='input r4 wide mb16 mt8 username']
+
+.nav-input nav-progressive-attribute
+.nav-input.nav-progressive-attribute
+
+text value: link-> a
+text='textvalue' -> `text='CRM/SFA'`
+
+-> https://login.salesforce.com/?locale=in
+username: dilipkumar.rajendran@testleaf.com
+password: TestLeaf@2025
+click on login
+await page.waitForTimeout(12000)
+get title page
+print the title
