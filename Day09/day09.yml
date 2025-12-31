@@ -1,0 +1,39 @@
+-> Playwright Locators
+-> Breakout +Break
+-> Assertion
+
+
+Playwright Locators:
+
+-> getByRole  - text,button,checkbox,link,radio,heading
+-> getByLabel -
+-> getByText -
+-> getByPlaceholder -
+-> getByAltText - img
+-> getByDataTestId
+-> getByTitle
+
+
+
+
+
+
+
+Playwright Assertions:
+default time sec for Assertions -> 5000ms(5s)
+Types:
+1.Auto Retry 
+2.Non-Retry
+3.soft
+4.hard
+
+
+Assertions tpes:
+Generic Type- toEqual, toHaveTitle
+Locator Type -tobeEnabled
+page type - toHaveURL
+API Assertions
+Negating Assertions
+expect().not.
+
+-> expect()

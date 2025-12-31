@@ -1,0 +1,16 @@
+-> Advanced Xpath
+-> Break + Break
+-> Playwrigth Locators
+
+locator("//div[@id='username_container']/input").first().fill()
+.first() -> first match
+.nth() -> index '0'-> 3 index -> nth(2)
+.last()
+
+locator("//div[@id='username_container']/input").nth(2).fill()
+
+--------------------------------------------
+Playwrigth Locators
+-> getByRole(text ,link, combox,checkbox)
+-> getByLable (label tag)
+-> getAltText-> img tag (alt="")
