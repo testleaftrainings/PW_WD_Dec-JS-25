@@ -1,0 +1,93 @@
+JavaScript 
+
+
+
+
+JavaScript (JS) is the language that runs in browsers and Node.js.
+
+TypeScript (TS) is a superset of JavaScript that adds static typing and tooling, and 
+then compiles down to JavaScript.
+
+All TypeScript becomes JavaScript before it runs.
+
+Key differences
+1. Typing
+
+JavaScript:
+
+Dynamically typed
+
+Errors often appear at runtime
+
+function add(a, b) {
+  return a + b;
+}
+
+add(1, "2"); // "12" 😬
+
+
+TypeScript:
+
+Statically typed (optional but encouraged)
+
+Errors caught at compile time
+
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+add(1, "2"); // ❌ Type error
+
+
+✅ TypeScript helps you catch bugs earlier.
+
+2. Tooling & Developer Experience
+
+TypeScript provides better:
+
+Autocomplete
+
+Refactoring
+
+Navigation (jump to definition)
+
+Documentation hints
+
+This is especially noticeable in large codebases.
+
+3. Compilation step
+
+JavaScript: Run directly
+
+TypeScript: Must be compiled
+
+tsc index.ts
+# outputs index.js
+
+
+Browsers and Node.js do not run TypeScript directly.
+
+4. Learning curve
+
+JavaScript: Easier to start
+
+TypeScript: Slightly more complex (types, interfaces, generics)
+
+But once learned, TypeScript usually reduces long-term complexity.
+
+5. Code scale & safety
+Project size	Better choice
+Small scripts	JavaScript
+Medium apps	Either
+Large apps / teams	TypeScript ✅
+
+
+-> program in .ts -> oddNumber.ts
+-> tsc oddNumber.ts -> complie and generate the js file 
+->  node oddNumber.js
+
+
+install command :
+npm install -g typescript 
+
+tsc -v -> version
