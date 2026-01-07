@@ -1,0 +1,10 @@
+https://www.leafground.com/alert.xhtml
+page.once -> 
+type, message
+1st confirm alert -> accept
+2nd prompt alert -> autodismiss
+
+page.on->
+type , message
+1st confirm alert -> accept
+2nd prompt alert -> accept("Message")

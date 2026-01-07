@@ -1,0 +1,18 @@
+first()-> 1st match ->0
+->index value start from '0'
+nth(1)-> 2nd,
+nth(2) -> 3rd -
+last() -> last match
+
+Frame:
+//iframe -> dom
+view Frame source -> right click
+
+3 ways to handle iFrame:
+-> index based 
+-> FrameLocator
+-> FrameObject
+
+-> 2 types of Frame
+1. single Frame
+2. Nested Frame
