@@ -1,0 +1,50 @@
+-> File Upload & Download
+-> Breakout & Break
+-> Storage State
+-> Breakout
+
+-> File Upload 
+-word,pdf,ppt,xlsx
+-> 2 types we can upload the File
+
+--> Tag name should be <input> and attribute is type=File
+.setInputFile()
+
+--> Event Listener 
+event ->(filechooser)
+.setFile()
+
+
+-> Download File
+
+--> Event Listener
+event -> ("download")
+.saveAs()
+
+
+Class roon:
+https://www.naukri.com/registration/createAccount
+click on I'm experienced
+upload the file
+setInputFiles()
+
+
+
+Storage state:
+150 TC -> Login function(15 to 20 sec)
+20*150 -> 3000s
+
+Skip the 
+http://leaftaps.com/crmsfa/control/main
+username: demosalesmanager
+password: crmsfa
+click on Login
+--Create Storage State
+
+create spec file
+-> use StorageState
+->Home Page url
+test 1-> click on Leads
+test 2-> click on Contacts
+
+
