@@ -1,0 +1,47 @@
+
+-> Env
+-> Breakout
+-> CSV
+-> Break + Breakout
+
+
+Multiple file to read
+const fileTORead=process.env.envFile
+dotenv.config({path:`constants/${fileTORead}.env`})
+
+set the filename
+$env:envFile="FileName"
+
+unset
+$env:envFile=""
+
+to know which file is set for execution
+$env:envFile
+
+
+
+
+
+
+csv -comma separated values
+TestCaseID,Username,password
+Tc001,dilip@testleaf.com,Leaf@123
+Tc002,vidyar@testleaf.com,Sales@123
+
+file -> fileName.csv
+
+step:1 --> install csv-parse
+ npm install csv-parse
+
+step:2 --> use parse() --> imported parse from csv-parse/sync
+parse(pathofthefile)
+
+step:3 -->install fs (file system)
+npm install fs
+
+Each row will be considered as one test 
+2 tests -->unique desc of the test
+
+path.join(__dirname,"") -->current directory with the filepath
+
+columns-->true -->read first row as header
