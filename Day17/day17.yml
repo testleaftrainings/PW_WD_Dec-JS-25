@@ -1,0 +1,31 @@
+Day17
+
+-> Test Annotation /Test Runner
+-> Breakout 
+-> Break
+-> Test.describe
+-> Breakout
+
+
+
+Test Annotation: configure the Behaviour of the test
+test.only -> run the test which marked as only
+test.skip -> test will not run
+test.fail -> Mark test as expected to fail
+test.fixme -> mark test as not ready yet
+test.use -> override context 
+test.info -> it shows additional information about test
+test.slow()-> Slow down execution time
+test.describe -> group your test
+test.describe.parallel -> run tests in parallel
+test.describe.serial -> run tests in serial -> depend on each other
+test.describe.default -> run tests in sequential order
+
+
+test.describe(){
+configure.serial
+test()- failed
+test()-skip
+test()-skip
+
+}
