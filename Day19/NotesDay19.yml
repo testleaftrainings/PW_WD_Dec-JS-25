@@ -1,0 +1,153 @@
+📑 Agenda for Day 19: REST API Fundamentals / Salesforce
+
+🎯 [ Focus: Understanding the core concepts and hands-on implementation of REST APIs ]  
+
+📆 Date: 21 Jan. [Wednesday]  
+
+🕝 Session Highlights  
+
+⿡ Recap  
+* Quick review of key learnings from previous sessions.  
+
+⿥ Request Body & Response Body  
+* Understanding the structure and purpose of request and response payloads.  
+
+⿦ Authorization Types  
+* Overview of different authorization methods (e.g., Basic Auth, OAuth2).
+
+⿧ Implementation in Postman - POST & GET Incident Without Global Variable [Salesforce]
+* Demonstration: Creating and retrieving Incidents.
+
+⿨ Create Lead in Salesforce
+* Practical exercise: Working with Lead using POST and GET requests.  
+
+⿧ Implementation in Postman - POST & GET Lead Without Global Variable [Salesforce]  
+* Demonstration: Creating and retrieving leads.  
+
+
+🕡 Wrap Up / Q&A  
+
+📝 Keep your physical notebook and pen handy to sketch out ideas!
+
+
+
+API Fundamentals:
+
+
+REST API -> Representational State Transfer Application Programming Interface.
+
+
+
+Links for Salesforce :
+-------------------------
+
+Salesforce document to get endpoint to generate access token  :
+https://help.salesforce.com/s/articleView?language=en_US&id=xcloud.remoteaccess_oauth_endpoints.htm&type=5
+
+Salesforce document to do CRUD operation for  Lead /Account :
+https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_curl.htm 
+
+------------------------------------
+
+Option 1: From Salesforce Setup (Recommended)
+
+Log in to your Salesforce Developer Org.
+
+Go to Setup → Object Manager.
+
+Search for and click on Lead.
+
+Open Fields & Relationships.
+
+You’ll see a list of all the fields available on the Lead object.
+
+The Field Label is what you see in the UI (e.g., “Last Name”).
+
+The Field Name is what you use in the API (e.g., LastName, Company).
+
+These “Field Names” are what you should use in your JSON request body.
+
+https://testleaf22-dev-ed.develop.my.salesforce-setup.com/lightning/setup/ObjectManager/Lead/FieldsAndRelationships/view
+
+✅ Example:
+
+{
+   
+   "Salutation": "Mr.",
+   "FirstName": "RavindranNovWD25",
+  "LastName": "R PlaywrightTrainer",
+  "Company": "Testleaf"
+
+}
+--------------------------------------
+
+Script used to set global variable:
+-----------------------------------
+
+In generate token :-
+------------------
+
+let tokenresponse = pm.response.json();
+console.log(tokenresponse)
+
+let resToken = tokenresponse.access_token
+console.log(resToken)
+
+pm.globals.set("ResourceTk",resToken)
+
+let url = tokenresponse.instance_url
+console.log(url)
+
+pm.collectionVariables.set("InstanceUrl",url)
+
+
+    pm.test("Status code is 200", function () {
+        pm.response.to.have.status(200);
+    });
+--------------------------
+
+In Create_Lead :-
+
+
+
+var leadresponse = pm.response.json();
+
+var resID = leadresponse.id
+
+console.log("Lead Id is"+ resID)
+
+pm.environment.set("LeadId", resID)
+
+pm.test("Status code is 201", function () {
+    pm.response.to.have.status(201);
+});
+
+
+---------------------------------------------
+
+Fetch_Specific Lead
+--------------------
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+---------------------------------
+
+Update_Specific_Lead :-
+
+pm.test("Status code is 204", function () {
+    pm.response.to.have.status(204);
+});
+
+--------------------------------
+Delete_Specific_Lead
+--------------------
+
+
+pm.test("Status code is 204", function () {
+    pm.response.to.have.status(204);
+});
+
+
+----------------------------------------
