@@ -1,0 +1,379 @@
+📑 Agenda for Day 20: Playwright with REST API Integration
+
+🎯 [ Focus: Integrating Playwright with REST APIs for End-to-End Automation Testing ]
+
+📆 [22 Jan. Jan 2026]  
+
+🕝 Session Highlights  
+
+⿡ Recap  
+* Quick review of key learnings from previous sessions.  
+
+⿢ Implementation in Postman - POST & GET Lead Without Global Variable [Salesforce]  
+* Demonstration: Creating and retrieving leads.  
+
+⿤ Implementation in Postman - POST & GET Lead With Global Variable  
+* Demonstration: Using global variables for better test management.  
+
+
+⿦ APIRequest, APIRequestContext, APIResponse  
+* Overview of these key Playwright API concepts.  
+
+⿧ Status Code, Response Body & Response Time  
+* Understanding and validating API response attributes.  
+
+⿨ POST Call (Creating a Lead)  
+* Demonstration of making POST requests in Playwright.  
+
+⿩ GET Call (Retrieving the Lead)  
+* Retrieving data using GET requests in Playwright.  
+
+ DELETE Call (Deleting the Lead)  
+* Automating the deletion of records using DELETE requests.  
+
+ 
+
+🕡 Practice/Wrap
+
+📝 Keep your physical notebook and pen handy to sketch out ideas!
+
+
+Notes:
+
+creating page reference in playwright :
+
+const browser = chromium.launch() --> Connect browser engine
+const context = browser.newContext() --> Window launched
+const page = context.newPage() --> a tab is loaded in that particular Window
+
+In playwright API testing happens by directly hitting your CDP network tabs :
+
+creating request reference in playwright using "APIRequestContext" :
+  // 1. Create a new API context (like creating a browser context)
+  const apiContext = await request.newContext(); //Creates a new API request context (like an isolated API session)
+
+  // 2. Send API request (GET, POST, PUT, DELETE, etc.)
+  const response = await apiContext.post('https://reqres.in/api/users/2'); //Sends a GET request
+
+  // 3. Validate response
+  console.log(await response.status());       // 200
+
+Page --> Page Interface provided by Playwright to so your UI testing
+APIRequestContext--> Interface provided by Playwright to make your API calls.
+
+**********************************************************************************
+Frequently Asked Questions :
+----------------------------
+
+### What response.json() really does
+
+When you call an API (like ServiceNow’s), it sends back data in JSON text format, for example:
+
+✅ response.json() → JSON string ➜ object
+
+
+------------------------------------------------------------------------------------
+
+## 1️⃣ What is `response` actually?
+
+When you call an API in Playwright / fetch / Axios:
+
+```ts
+const response = await request.get(url);
+```
+
+`response` is **NOT the JSON data**.
+
+It is a **Response Object** — a wrapper created by the HTTP client that contains:
+
+| Inside `response`                        |
+| ---------------------------------------- |
+| Status code (200, 404…)                  |
+| Headers                                  |
+| Cookies                                  |
+| Response time                            |
+| Body (raw text from server)              |
+| Helper methods like `.json()`, `.text()` |
+
+So `response` is called an **object** because it has:
+
+```ts
+response.status()
+response.headers()
+response.ok()
+response.json()
+response.text()
+```
+
+That is **behavior + data** → that’s an object.
+
+---
+
+## 2️⃣ What does the server actually send?
+
+ServiceNow sends this over the network:
+
+```json
+{
+  "result": {
+    "sys_id": "123",
+    "short_description": "Login issue"
+  }
+}
+```
+
+This travels as **plain text**:
+
+```
+"{ "result": { "sys_id": "123", "short_description": "Login issue" } }"
+```
+
+The browser / Playwright receives **text**, not an object.
+
+---
+
+## 3️⃣ What does `response.json()` do?
+
+`response.json()` means:
+
+> “Hey Response object, take your body text and convert it into a JavaScript object for me.”
+
+Internally it does:
+
+```js
+JSON.parse(responseBodyText)
+```
+
+So:
+
+| Step              | What it is            |
+| ----------------- | --------------------- |
+| Server sends      | JSON **string**       |
+| `response.body()` | JSON **string**       |
+| `response.json()` | JavaScript **object** |
+
+---
+
+## 4️⃣ Why do we say **response is an object**?
+
+Because `response` is like this:
+
+```js
+response = {
+  status: 200,
+  headers: {...},
+  body: "{ 'name':'Ravi' }",
+  json: function() { ... },
+  text: function() { ... }
+}
+```
+
+This is a **JavaScript object with properties and methods**.
+
+That’s why we say:
+
+> **`response` is an object, but `response.json()` returns another object (the API data).**
+
+---
+
+## 5️⃣ Real-world analogy 🚚
+
+Think of ordering on Swiggy:
+
+| Thing                | API meaning       |
+| -------------------- | ----------------- |
+| Delivery box         | `response` object |
+| Bill, items, receipt | Inside the box    |
+| Opening the box      | `response.json()` |
+| Food you eat         | Actual data       |
+
+You don’t eat the box — you open it first 😄
+
+---
+
+## 6️⃣ In Playwright (ServiceNow example)
+
+```ts
+const response = await request.get(url);   // 📦 response object
+const data = await response.json();        // 📄 actual API data
+
+console.log(data.result.sys_id);
+```
+
+`response` = **API wrapper object**
+`data` = **real JSON content**
+
+----------------------------------------
+
+###Why encoding is needed (and not plain username/password)
+
+- HTTP headers only accept ASCII text, not special characters like %, *, etc.
+
+- Base64 encoding ensures your credentials are transmitted safely as plain text (not encrypted, but properly formatted).
+
+- ServiceNow (and most APIs) expects credentials in this Base64 form for Basic Auth requests — if you send raw username and password, it won’t recognize them.
+
+----------------------------------------
+reposneBody :
+                       responseBody.result.sys_id
+{
+  result: {
+    parent: '',
+    made_sla: 'true',
+    caused_by: '',
+    watch_list: '',
+    upon_reject: 'cancel',
+    sys_updated_on: '2026-01-05 14:21:53',
+    child_incidents: '0',
+    hold_reason: '',
+    origin_table: '',
+    task_effective_number: 'INC0010487',
+    approval_history: '',
+    number: 'INC0010487',
+    resolved_by: '',
+    sys_updated_by: 'admin',
+    opened_by: {
+      link: 'https://dev291487.service-now.com/api/now/table/sys_user/6816f79cc0a8016401c5a33be04be441',
+      value: '6816f79cc0a8016401c5a33be04be441'
+    },
+    user_input: '',
+    sys_created_on: '2026-01-05 14:21:53',
+    sys_domain: {
+      link: 'https://dev291487.service-now.com/api/now/table/sys_user_group/global',
+      value: 'global'
+    },
+    state: '2',
+    route_reason: '',
+    sys_created_by: 'admin',
+    knowledge: 'false',
+    order: '',
+    calendar_stc: '',
+    closed_at: '',
+    cmdb_ci: '',
+    delivery_plan: '',
+    contract: '',
+    impact: '2',
+    active: 'true',
+    work_notes_list: '',
+    business_service: '',
+    business_impact: '',
+    priority: '3',
+    sys_domain_path: '/',
+    rfc: '',
+    time_worked: '',
+    expected_start: '',
+    opened_at: '2026-01-05 14:21:53',
+    business_duration: '',
+    group_list: '',
+    work_end: '',
+    caller_id: '',
+    reopened_time: '',
+    resolved_at: '',
+    approval_set: '',
+    subcategory: 'email',
+    work_notes: '',
+    universal_request: '',
+    short_description: 'Email not working',
+    close_code: '',
+    correlation_display: '',
+    delivery_task: '',
+    work_start: '',
+    assignment_group: '',
+    additional_assignee_list: '',
+    business_stc: '',
+    cause: '',
+    description: 'User cannot send or receive emails',
+    origin_id: '',
+    calendar_duration: '',
+    close_notes: '',
+    notify: '1',
+    service_offering: '',
+    sys_class_name: 'incident',
+    closed_by: '',
+    follow_up: '',
+    parent_incident: '',
+    sys_id: '1c6ae378c35aba108b193cec05013141',
+    contact_type: '',
+    reopened_by: '',
+    incident_state: '2',
+    urgency: '2',
+    problem_id: '',
+    company: '',
+    reassignment_count: '0',
+    activity_due: '',
+    assigned_to: {
+      link: 'https://dev291487.service-now.com/api/now/table/sys_user/5137153cc611227c000bbd1bd8cd2005',
+      value: '5137153cc611227c000bbd1bd8cd2005'
+    },
+    severity: '3',
+    comments: '',
+    approval: 'not requested',
+    sla_due: '',
+    comments_and_work_notes: '',
+    due_date: '',
+    sys_mod_count: '0',
+    reopen_count: '0',
+    sys_tags: '',
+    escalation: '0',
+    upon_approval: 'proceed',
+    correlation_id: '',
+    location: '',
+    category: 'inquiry'
+  }
+}
+  }
+}
+
+--------------------------------------
+
+ What is External Test Data in Postman?
+
+It means:
+
+Test data is NOT written inside the request
+It is stored in a separate file (CSV or JSON) and Postman reads it during execution.
+
+Just like:
+
+Excel / CSV in Selenium DataProvider
+
+📄 Example – CSV file (leads.csv)
+firstName,lastName,company
+Ravi,Krishnan,OpenAI
+Amit,Sharma,TCS
+Neha,Verma,Infosys
+
+🧩 In Postman Request Body
+
+Instead of hardcoded values, you write:
+
+{
+  "FirstName": "{{firstName}}",
+  "LastName": "{{lastName}}",
+  "Company": "{{company}}"
+}
+
+▶ In Collection Runner (your screenshot)
+
+You click Select File
+Choose leads.csv
+Set Iterations = 3
+
+Postman will run:
+
+Iteration	Data Used
+1	Ravi, Krishnan, OpenAI
+2	Amit, Sharma, TCS
+3	Neha, Verma, Infosys
+
+Each row = one API execution.
+
+ Same thing in Playwright
+
+Postman CSV == Playwright data-driven testing
+
+const data = require('./leads.json');
+
+for (const lead of data) {
+   await request.post("/lead", { data: lead });
+}
