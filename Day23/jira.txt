@@ -1,0 +1,43 @@
+import axios from "axios"
+
+const endpoint = "https://manual-testing-demoproject.atlassian.net/rest/api/2/issue"
+const emailId = "ravindranr90@gmail.com"
+const apiToken = "ATATT3xFfGF0-tc-psPoXv90pDal-tTWwoQM6QDvnshP3a-7NPULKGh8eBG70kgwhG-ZMeYxuuPEklIfi66cg076gOaTmWXjZNkOn-s-7khxt8Bj71WCoZPjWaW1-Bt1ewMcE03d-M3lQfFKkqEGB532fxq-KzVR1HjtGG1JsCnN62cuIzE5kPk=3B56EDEA"
+
+export async function createIssue(summary: string, description: string) { // function parameter
+
+    const response = await axios.post(endpoint,
+        {
+            "fields": {
+                "project": {
+                    "key": "PD"
+                },
+                "summary": summary,
+                "description": description,
+                "issuetype": {
+                    "name": "Bug"
+                }
+            }
+
+        }, {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        auth: {
+            "username": emailId,
+            "password": apiToken
+        }
+
+    })
+console.log(response);
+}
+
+createIssue("Bug created through PW API", "Creating bug using JIRA REST API")//passing argument while calling the named function
+    /* Summary:
+    Description: */
+
+    /* endpoint,
+     issueDetails,
+     headers,
+     auth */
+
