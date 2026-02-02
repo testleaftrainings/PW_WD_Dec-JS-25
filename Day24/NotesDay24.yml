@@ -1,0 +1,180 @@
+📑 **Agenda for Day 24: OOPs in TypeScript
+🎯 [Focus: Mastering Object-Oriented Programming Concepts in TypeScript]
+
+📆 [02th Feb. Monday]
+
+🕝 Session Highlights
+
+⿡ Recap
+Quick review of previous learnings.
+
+1. Class & Objects
+
+Understanding the basics of classes and objects in TypeScript.
+Examples: Creating and using classes and objects.
+
+2. Constructors
+
+Role of constructors in initializing objects.
+Examples: Using parameterized and default constructors.
+
+3. Access Modifiers
+
+Understanding public, private, and protected access modifiers.
+Examples: Controlling access to class properties and methods.
+
+
+🕡 Wrap Up / Q&A
+
+📝 Keep your physical notebook and pen handy to sketch out ideas and test workflows!
+
+
+Agenda :
+
+1. Class and Object.[Encapsulation]
+2. Method and properties.
+3. Constructor.
+4. Accessmodifiers.
+
+
+***************************************************************************************
+Class and Object:
+
+
+Real life example of Class and Object, Properties and Methods:
+
+###  What is a *Class*?
+
+A *class* is like a *blueprint* or *template* for creating something.
+
+Think of it like this:
+When a car company (like Toyota) designs a new model — say the *Innova* — they first create a *design or blueprint*.
+That blueprint has details like:
+
+* The engine type
+* Number of seats
+* Fuel capacity
+* Basic shape and dimensions
+
+But the *blueprint itself is not a car* — it’s just a design or a plan.
+
+Script:
+-------
+
+class Car {
+
+//properties => variables
+
+accel="Accelerator";
+brake="Brakes"
+
+//methods => Actionables
+
+startEngine(){
+console.log("Press Accelerator")
+}
+
+stopEngine(){
+console.log("Press Brakes")
+}
+
+}
+
+const obj = new Car() // Object created
+obj.startEngine()
+obj.stopEngine()
+
+
+Example 2 with application login :
+-----------------------------------
+
+property :
+---------
+Represents the information or data related to a particular page or object
+(e.g., username, password, URL).
+
+method :
+-------- 
+Represents the actions or operations performed on that page or object
+(e.g., fill a field, click a button, submit a form).
+
+******************************************************************************************
+
+Sample Program :
+--------------
+
+
+******************************************************************************************
+Classroom Question:
+-------------------
+
+
+You are building a basic browser simulator for an automation framework.
+
+Design a Browser class in TypeScript that:
+
+Stores browser name and version as properties
+
+Uses this keyword inside a method to access class properties
+
+Uses template literals to print browser launch details
+
+Demonstrates the flow by creating an object and executing all actions
+
+****************************************************************************************
+Constructor:
+
+Definition
+A constructor in TypeScript is a method named constructor() that runs once at the time of object creation and sets up the initial state of the object.
+Or a Special method to initialize the object
+
+*******************************************************************************************
+
+
+class LoginPage{
+
+//Properties:
+------------
+
+username = "democsr2"
+password = "crmsfa"
+
+//Method :
+
+fill(){ // Method block--> block of code to perform an action
+//Actionables
+fill method
+use the properties "username" and "password" to perform the action to fill the login form
+}
+
+click(){
+//Actionables
+click method
+}
+}
+
+
+const lp = new LoginPage() // ✔️ Memory is allocated //syntax to create an object(reference/ instance/copy) for a class to call the methods(actionable blocks) inside the class 
+lp.fill()
+lp.click()
+
+class WelcomePage{
+click(){
+//Actionables
+click method
+}
+}
+
+
+
+
+function LoginPage(){ // function block
+//Actionables
+fill method
+click method
+
+}
+
+LoginPage()
+
+---------------------------------------------------------------------
