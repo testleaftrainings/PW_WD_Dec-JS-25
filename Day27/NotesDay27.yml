@@ -1,0 +1,27 @@
+📑 Agenda for Week Day 1: Abstraction, Interface in POM and Playwright Advanced Features
+🎯 Focus: Mastering POM using OOPS concept and learning advanced playwright features.
+
+📆 19th Jan, Monday
+
+🕝 Session Highlights
+
+⿡ Recap
+Quick review of previous learnings.
+
+1. Network Interception (Playwright Advanced Feature)
+
+What is network interception and why it is needed
+Intercepting API responses
+Mocking API responses for stable test execution
+
+
+2. Abstraction and Interface
+Using abstract classes and methods to define templates.
+Implementing the same in POM.
+Examples: Designing partially implemented base classes.
+
+🕡 Wrap Up / Q\&A
+
+📝 Keep your physical notebook and pen handy to sketch out ideas and test workflows!
+
+*******************************************************************************************
