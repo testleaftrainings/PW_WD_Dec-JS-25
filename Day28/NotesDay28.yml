@@ -1,0 +1,350 @@
+📑 Agenda for Day 28: Custom Fixture and Playwright Features
+
+🎯 Focus: Mastering Object-Oriented Programming Concepts in TypeScript
+
+📆 09th Feb, Monday
+
+🕝 Session Highlights
+
+⿡ Recap
+Quick review of previous learnings.
+
+1. Custom Fixture
+Creating reusable test setup using custom fixtures.
+Examples: Injecting test data, context, or utilities.
+
+2. Abstraction
+Using abstract classes and methods to define templates.
+Examples: Designing partially implemented base classes.
+
+
+🕡 Wrap Up / Q\&A
+
+📝 Keep your physical notebook and pen handy to sketch out ideas and test workflows!
+
+
+Custom Fixture :
+----------------
+
+# Playwright Custom Fixture –
+
+## What problem is Custom Fixture solving?
+
+=> In real projects, **every test needs login**
+=> Writing login steps in **every test** is:
+
+* Repetitive 
+* Hard to maintain 
+* Not professional 
+
+✅ **Solution:** Use a **custom fixture**
+
+---
+
+##What is a Fixture (Simple words)
+
+> A **fixture** is **pre-written setup code** that runs **before your test starts**,and **cleanup code** that runs **after your test ends**.
+
+---
+
+## Your Custom Fixture File (02-fixture.ts)
+
+import { test as baseT } from "@playwright/test";
+
+export const test = baseT.extend({
+
+### What is happening here?
+
+* `baseT` → Original Playwright test
+* `extend()` → We are **adding our own behavior**
+* We are **overriding the `page` fixture**
+
+---
+
+## The Custom `page` Fixture
+
+page: async ({ browser }, use) => {
+
+### Meaning:
+
+* Playwright gives us a **browser**
+* We create our **own page**
+* We control **when test starts and ends**
+
+---
+
+## Setup Phase (Runs BEFORE the test)
+
+const page = await browser.newPage()
+await page.goto(`http://leaftaps.com/opentaps/control/main`)
+
+✔ Browser opens
+✔ Page opens
+✔ Application launches
+
+---
+
+### Login Steps (Reusable logic)
+
+await page.locator(`#username`).fill(`demosalesmanager`);
+await page.locator(`#password`).fill(`crmsfa`);
+await page.locator(`.decorativeSubmit`).click();
+
+✔ Login is completed
+✔ Now page is in **logged-in state**
+
+---
+
+## The MOST IMPORTANT LINE
+
+await use(page)
+
+### MUST REMEMBER
+
+> **`use(page)` is the border line**
+
+### What it means:
+
+| Before `use(page)` | After `use(page)` |
+| ------------------ | ----------------- |
+| Setup code         | Cleanup code      |
+| Runs BEFORE test   | Runs AFTER test   |
+
+Think of it as:
+
+> “Okay Playwright, now give this page to the test”
+
+---
+
+## Cleanup Phase (Runs AFTER the test)
+
+await page.close()
+
+✔ Page closed
+✔ Browser cleaned
+✔ No memory leak
+
+This happens **automatically after test execution**
+
+---
+
+## Your Test File
+
+import { test } from "./02-fixture";
+
+
+### Why not import from `@playwright/test`?
+
+👉 Because we want:
+
+* Logged-in page
+* Pre-configured page
+* Reusable setup
+
+---
+
+### Test Code
+
+test(`Using Custom Fixture`, async ({ page }) => {
+    console.log(await page.title());
+});
+
+
+### What happens here?
+
+* Page is **already logged in**
+* Test does **NOT know login logic**
+* Test focuses only on **validation**
+
+📌 Output:
+
+Leaftaps - TestLeaf Automation Platform
+---
+
+## Execution Flow (VERY IMPORTANT)
+
+Fixture START
+  ├─ Browser opens
+  ├─ Page opens
+  ├─ App launches
+  ├─ Login happens
+  ├─ use(page) ← Test starts here
+      └─ Test prints title
+  ├─ Test ends
+  ├─ page.close()
+Fixture END
+```
+
+---
+
+## Why This Is INDUSTRY STANDARD
+
+✅ Clean code
+✅ Reusable
+✅ Scalable
+✅ Easy maintenance
+✅ Interview-ready concept
+
+---
+
+
+
+---
+
+## One-line Interview Answer
+
+> **Custom fixture is used to centralize common setup and teardown logic so that tests remain clean, reusable, and maintainable.**
+
+
+
+1. Interface :
+-----------------
+
+- Complete hiding of the implemented.
+- 100% abstraction.
+- Only unimplemented methods.
+
+Summarize 
+
+- class extends another class
+- abstract extends another abstract class
+- interface extends another interface
+- class extends abstract class
+- class implements interface
+- class extends abstract class im plemnets interface
+
+We cannot see implementation of your page fixture, context browser in playwright everytging is put in as interface
+
+2. Abstraction
+----------------- 
+
+abstract class :
+
+- 0 to 100% abstraction.
+- Method signature --> unimplementedmethods
+- Implemented methods --> logic 
+
+
+-------------------------------------------------------------------------------------
+
+lop : async ({ page }, use) => {
+    const lop = new LoginPage(page)
+    await use(lop)
+},
+This means:
+
+“Before each test, create a LoginPage object and give it to the test as lop.”
+
+Break it into 4 logical steps
+1. lop :
+You are defining a new fixture named lop.
+
+So now in your test you can write:
+
+test('create lead', async ({ lop }) => {
+    await lop.enterUsername()
+})
+2. async ({ page }, use) =>
+This is the fixture function.
+
+It receives:
+
+{ page } → built-in Playwright page
+
+use → a special callback that hands the object to the test
+
+Think of it as:
+
+setup -> run test -> teardown
+3. const lop = new LoginPage(page)
+This is pure POM (Page Object Model).
+
+You are saying:
+
+“Wrap Playwright’s raw page inside my own LoginPage class.”
+
+So instead of:
+
+await page.fill('#username', 'demo')
+You now do:
+
+await lop.enterUsername('demo')
+Cleaner, reusable, readable.
+
+4. await use(lop)
+This is the most important line.
+
+It means:
+
+“Give this lop object to the test and pause here until the test finishes.”
+
+Visually:
+
+Before hook:
+  const lop = new LoginPage(page)
+
+Test runs:
+  test({ lop }) { ... }
+
+After hook:
+  (anything after use runs here)
+Mental Model (best way to teach)
+This fixture is equivalent to:
+
+beforeEach(() => {
+   create LoginPage
+})
+
+test(() => {
+   use LoginPage
+})
+
+afterEach(() => {
+   cleanup
+})
+But all in one line.
+
+Why this is extremely powerful
+Without fixture:
+
+test('lead', async ({ page }) => {
+   const lop = new LoginPage(page)
+   const hp = new HomePage(page)
+   const lp = new LeadPage(page)
+})
+With fixture:
+
+test('lead', async ({ lop, hp, lp }) => {
+   // already created
+})
+No object creation in tests.
+No boilerplate.
+No repetition.
+
+Real meaning in one sentence
+This line:
+
+lop : async({page},use)=>{ ... }
+Means:
+
+“Create this object once per test, inject it automatically, and manage its lifecycle.”
+
+Why use() exists at all
+Because Playwright supports teardown:
+
+lop : async({page},use)=>{
+    const lop = new LoginPage(page)
+
+    await use(lop)   // test runs here
+
+    console.log("After test finished")
+}
+Anything after use() runs after the test.
+
+Exactly like:
+
+beforeEach
+
+afterEach
+
+in one function.
