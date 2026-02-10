@@ -1,0 +1,39 @@
+📑 Agenda for Week 8 Day 1: POM and Playwright Advanced Features
+🎯 Focus: Mastering POM using OOPS concept and learning advanced playwright features.
+
+📆 03rd Dec, Saturday
+
+🕝 Session Highlights
+
+⿡ Recap
+Quick review of previous learnings.
+
+1. Allure reporting
+* Report using third party library allure for tests.
+
+2. Hooks Test Annotation
+* Different test annotation used as part of testcase execution.
+
+3. Network Interception (Playwright Advanced Feature)
+
+What is network interception and why it is needed
+Intercepting API responses
+Mocking API responses for stable test execution
+
+4. Visual Regression Testing
+
+What is visual regression and why it matters
+Screenshot comparison basics in Playwright
+Handling UI changes and tolerances
+
+
+
+NOtes :
+
+Test Annotation - Hooks concept :
+
+1. test.BeforeAll()
+2. test.BeforeEach()
+3. test.AfterEach()
+4. test.AfterAll()
+

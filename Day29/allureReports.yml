@@ -1,0 +1,77 @@
+Commands for Allure Reports:
+---------------------------
+Step1 :
+
+in the configuration make below changes:
+reporter: [['html'], ['allure-playwright']],
+
+Step2 :
+
+And execute below commands in the terminal :
+
+1. npm i -D allure-playwright
+
+2. npm i -g allure-commandline --save-dev
+
+3. Execute the tests:
+   npx playwright test fileName --project=chromium
+
+4. allure serve
+
+
+-----------------------------------------------------------------------
+
+Command Explanation :
+-------------------
+
+1️⃣ npm i -D allure-playwright
+
+What it does
+
+Installs Allure adapter for Playwright
+Adds it to your project’s node_modules
+Saved in devDependencies of package.json
+
+Purpose
+
+This is the library that generates Allure result files when your tests run.
+Without this → no allure-results folder will be created.
+
+It works inside your code:
+
+import { allure } from "allure-playwright";
+
+2️⃣ npm i -g allure-commandline --save-dev
+
+What it does
+
+Installs Allure CLI tool
+Globally available in your system
+Gives you this command in terminal:
+
+allure serve
+allure generate
+
+Purpose
+
+This is the viewer / report generator.
+Without this → you cannot open HTML reports.
+
+Mental model (easy to remember)
+
+Part	Role
+allure-playwright	-> Collector – produces raw test data
+allure-commandline -> Presenter – converts data into HTML
+
+-----------------------------------------------------------------------
+Real life analogy
+-----------------
+
+Think of a CCTV system:
+
+allure-playwright → the camera
+
+allure-commandline → the monitor screen
+
+Camera without screen = useless
+Screen without camera = nothing to show
