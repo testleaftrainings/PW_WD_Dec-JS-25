@@ -1,0 +1,146 @@
+
+📑 Agenda for Day 30 : GitHub Actions CI and Playwright Framework.                
+🎯 Focus: GitHub Actions CI and Playwright Framework Walkthrough 
+
+📆 11th Feb, 2026
+
+🕝 Session Highlights
+
+⿡ Recap
+Quick review of previous learnings.
+
+1. GitHub Actions:
+- Git Commands
+
+
+2. Framework Walkthrough
+- Explore a production level framework
+
+-------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Pull Request (PR)** means:
+
+> **“I finished my work, please review it and merge it into the main code.”**
+
+It is **not a Git command** — it is a **feature of platforms** like:
+
+* GitHub
+* GitLab
+* Bitbucket
+* Azure DevOps
+
+---
+
+## Simple mental model 
+
+Imagine a classroom:
+
+* `main` branch → master notebook
+* your `feature` branch → your rough notebook
+
+A **Pull Request** is you saying:
+
+> “Sir, I’ve completed my assignment. Please check and add it to the main notebook.”
+
+---
+
+## Typical PR flow (real life)
+
+```bash
+git checkout -b login-feature
+# write code
+git add .
+git commit -m "Add login automation"
+git push origin login-feature
+```
+
+Now on GitHub:
+👉 Click **“Create Pull Request”**
+
+---
+
+## What happens inside a PR?
+
+A PR contains:
+
+* list of commits
+* code diff (what changed)
+* comments & review
+* automated checks (CI)
+
+---
+
+## Why PR is critical in teams
+
+Without PR:
+
+* anyone can break main branch
+
+With PR:
+
+* code is **reviewed**
+* tests run automatically
+* mistakes caught early
+
+This is how **professional teams work**.
+
+---
+
+## Pull vs Pull Request (important distinction)
+
+| Term         | Meaning                |
+| ------------ | ---------------------- |
+| `git pull`   | Download code          |
+| Pull Request | Ask to merge your code |
+
+Completely different concepts.
+
+
+## What happens if PR is rejected?
+
+Reviewer adds comments like:
+
+* "Use getByRole instead of XPath"
+* "Avoid hard waits"
+* "Fix test data"
+
+You update code → push again → PR updates automatically.
+
+---
+
+## One-liner to remember
+
+> **Commit = save**
+> **Push = upload**
+> **Pull = download**
+> **Pull Request = ask permission to merge**
+
+---
+
+## Why companies care so much about PR
+
+Because:
+
+* no single developer is perfect
+* bugs are cheaper in review than in production
+* knowledge is shared across team
+
+PR is not just Git feature —
+it’s **core of modern software culture**.
